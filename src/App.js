@@ -24,14 +24,20 @@ function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const url = 'https://api.openweathermap.org/data/2.5/weather?lat=41.619549&lon=-93.598022&units=imperial&appid=092467d3d18666d433c2d95d26712911';
-   
-  
-  useEffect(() =>{
+  const url = 'https://api.openweathermap.org/data/2.5/weather?lat=41.619549&lon=-93.598022&units=imperial&appid='+process.env.REACT_APP_Weather_API_KEY;
+  let count = 0;
+  const retriveInfo = () =>{
     axios.get(url).then((response) => {
       setData(response.data);
       console.log(response.data);
     })
+  }
+  useEffect(() =>{
+   if(count == 0){
+     
+     retriveInfo();
+     count++;
+   }  
   })
 
   return (
