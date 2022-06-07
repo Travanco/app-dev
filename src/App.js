@@ -22,15 +22,20 @@ import confluence from './images/Confluence.png';
 import outlook from './images/outlook.jpeg';
 import webex from './images/webex.jpeg';
 import jira from './images/jira.jpeg';
-
+import news from './images/news.jpg';
+import Toast from 'react-bootstrap/Toast';
+import newsroom from './images/newsroom.jpeg';
+import newsback from './images/news background.jpeg';
 
 
 function App() {
-  const [data,setData] = useState({})
+  const [data,setData] = useState({});
+  const [news,setNews] = useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const url = 'https://api.openweathermap.org/data/2.5/weather?lat=41.619549&lon=-93.598022&units=imperial&appid='+process.env.REACT_APP_Weather_API_KEY;
+  const newsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey='+process.env.REACT_APP_News_API_KEY;
   let count = 0;
   const retriveInfo = () =>{
     axios.get(url).then((response) => {
@@ -38,13 +43,17 @@ function App() {
       console.log(response.data);
     })
   }
+
+  const retriveNews = () =>{
+    axios.get(newsUrl).then((response) => {
+      setNews(response.data);
+      console.log(response.data);
+    })
+  }
+
   useEffect(() =>{
-   if(count == 0){
-     
-     retriveInfo();
-     count++;
-   }  
-  })
+    retriveNews();
+  },[])
 
   return (
     <div className="App">
@@ -125,7 +134,16 @@ function App() {
     <Nav className="me-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#directory">Directories</Nav.Link>
-      
+      <NavDropdown title="Employee Resources" id="tech-dropdown">
+          <NavDropdown.Item href="#service-desk">Employee Service Desk</NavDropdown.Item>
+          <NavDropdown.Item href="#My-hr">My Hr</NavDropdown.Item>
+          <NavDropdown.Item href="#Guideone-store">GuideOne Store</NavDropdown.Item>
+          <NavDropdown.Item href="#Bussiness-cards">Business Cards</NavDropdown.Item>
+          <NavDropdown.Item href="#My-hr">My Hr</NavDropdown.Item>
+          <NavDropdown.Item href="#Cat-Pay-Form">Cat Pay form</NavDropdown.Item>
+          <NavDropdown.Item href="#managers-resources">Manager Resources Page</NavDropdown.Item>
+          <NavDropdown.Item href="#gOneLegal">GuideOne Legal Website</NavDropdown.Item>
+        </NavDropdown>
       <NavDropdown title="Tech Services" id="tech-dropdown">
           <NavDropdown.Item href="#tech-reset">Reset Password</NavDropdown.Item>
           <NavDropdown.Item href="#Submit-ticket">Submit a Ticket</NavDropdown.Item>
@@ -171,7 +189,18 @@ function App() {
             </div>
           </Carousel.Caption>
         </Carousel.Item>
-       
+
+        <Carousel.Item>
+          <img  
+            className="d-block w-100"
+            src={newsroom}
+            alt="Image Two"
+          ></img>
+
+          <Carousel.Caption>
+            <div className="news-data"></div>
+          </Carousel.Caption>
+        </Carousel.Item>
 
       </Carousel>
       

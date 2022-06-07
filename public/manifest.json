@@ -1,6 +1,6 @@
 {
-  "short_name": "GuideHome mock site",
-  "name": "Create React App Sample",
+  "short_name": "GuideHome",
+  "name": "Guidehome mock employee site",
   "icons": [
     {
       "src": "favicon.ico",
