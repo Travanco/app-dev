@@ -1,6 +1,6 @@
 import './App.css';
 import './weather.css'
-import desMoines from './images/DesMoines.jpg';
+import desMoines from './images/desmoines3.jpg';
 import menu from './images/bars-solid.png';
 import guide from './images/75guideone.png';
 import { Accordion, Col, ListGroup, ListGroupItem, Nav, NavDropdown, Row } from 'react-bootstrap';
@@ -22,6 +22,7 @@ import confluence from './images/Confluence.png';
 import outlook from './images/outlook.jpeg';
 import webex from './images/webex.jpeg';
 import jira from './images/jira.jpeg';
+
 
 
 function App() {
@@ -160,16 +161,13 @@ function App() {
             alt="Image One"
           />
           <Carousel.Caption>
-            <div className="name">
-            <h2>{data.name}</h2>
-            {data.main ? <h2>{data.main.temp.toFixed()}°F</h2>: null}
-            <div className="description">
-              {data.weather ? <p>{data.weather[0].main}</p>:null}   
-            </div> 
-            
-            {data.main ? <p>Feels Like: {data.main.feels_like.toFixed()}°F</p>:null}
-            {data.main ? <p>Humidity: {data.main.humidity}%</p>:null}
-            {data.wind ? <p>Windspeed: {data.wind.speed.toFixed()} mph</p>:null}
+            <div className="weather-data">
+            {data.name ? <h2>{data.name}</h2>: <h2>Des Moines</h2>}
+            {data.main ? <h2>{data.main.temp.toFixed()}°F</h2>: <h2>70°F</h2>}         
+            {data.weather ? <p>{data.weather[0].main}</p>: <p>Cloudy</p>}   
+            {data.main ? <p>Feels Like: {data.main.feels_like.toFixed()}°F</p>: <p>Feels Like: 70F</p>}
+            {data.main ? <p>Humidity: {data.main.humidity}%</p>: <p>Humidity: 70%</p>}
+            {data.wind ? <p>Windspeed: {data.wind.speed.toFixed()} mph</p>: <p>Windspeed: 70 mph</p>}
             </div>
           </Carousel.Caption>
         </Carousel.Item>
@@ -207,16 +205,17 @@ function App() {
           <Card.Img variant="top" src={adp} style={{height:150, width:150}}/>
           <Card.Body>
             <Card.Title>ADP</Card.Title>
-            <Button variant="outline-success">Launch</Button>
+            <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
 
         <Col>
-        <Card style={{ width: '155px',}}>
+        <br></br>
+        <Card style={{ width: '155px'}}>
           <Card.Img variant="top" src={outlook} style={{height:150, width:150}}/>
           <Card.Body>
           <Card.Title>Outlook</Card.Title> 
-          <Button variant="outline-success">Launch</Button>
+          <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
       </Col>
@@ -226,7 +225,7 @@ function App() {
           <Card.Img variant="top" src={webex} style={{height:150, width:150}}/>
           <Card.Body>
           <Card.Title>Webex</Card.Title> 
-          <Button variant="outline-success">Launch</Button>
+          <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
       </Col>
@@ -235,7 +234,7 @@ function App() {
           <Card.Img variant="top" src={bitbucket} style={{height:150, width:150}}/>
           <Card.Body>
           <Card.Title>BitBucket</Card.Title> 
-          <Button variant="outline-success">Launch</Button>
+          <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
       </Col>
@@ -244,7 +243,7 @@ function App() {
           <Card.Img variant="top" src={confluence} style={{height:150, width:150}}/>
           <Card.Body>
           <Card.Title>Confluence</Card.Title> 
-          <Button variant="outline-success">Launch</Button>
+          <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
       </Col>
@@ -253,7 +252,7 @@ function App() {
           <Card.Img variant="top" src={jira} style={{height:150, width:150}}/>
           <Card.Body>
           <Card.Title>Jira</Card.Title> 
-          <Button variant="outline-success">Launch</Button>
+          <Button variant="outline-primary">Launch</Button>
           </Card.Body>
         </Card>
         
