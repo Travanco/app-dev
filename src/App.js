@@ -42,10 +42,10 @@ function App() {
 
   return (
     <div className="App">
-    <Navbar bg="primary" variant="dark">
+    <Navbar bg="light" variant="light">
     <Container>
     
-    <Navbar.Brand href="#home"><Button onClick={handleShow}><img src={menu} className='menu-button'></img></Button>GuideHome</Navbar.Brand>
+    <Navbar.Brand href="#home"><img src={menu}className='menu-button' onClick={handleShow}></img>GuideHome</Navbar.Brand>
     <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu</Offcanvas.Title>
@@ -137,7 +137,7 @@ function App() {
           className="me-2"
           aria-label="Search"
         />
-        <Button variant="outline-success">Search</Button>
+        <Button variant="secondary">Search</Button>
       </Form>
     </Container>
   </Navbar>
@@ -175,6 +175,7 @@ function App() {
     </div>
     </Col>
     <Col>
+    <div style={{padding: 30}}> 
     <Card>
   <Card.Header as="h5">Reminders and Alerts</Card.Header>
   <Card.Body>
@@ -182,9 +183,10 @@ function App() {
     <Card.Text>
     Dave has been stocking the GuideOne Market with fresh box lunch options for only $2. Looking for a breakfast option? You can now purchase cinnamon rolls, bagels and cream cheese, jumbo muffins and more! Check back often to see what Dave has in stock.
     </Card.Text>
-    <Button variant="primary">Go somewhere</Button>
+ 
   </Card.Body>
-</Card>
+  </Card>
+  </div>
     </Col>
     </Row>
     </Container>
