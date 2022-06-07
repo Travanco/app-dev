@@ -16,7 +16,12 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import AccordionHeader from 'react-bootstrap/esm/AccordionHeader';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import Card from 'react-bootstrap/Card';
-
+import adp from './images/adp.png';
+import bitbucket from './images/bitbucket.jpeg';
+import confluence from './images/Confluence.png';
+import outlook from './images/outlook.jpeg';
+import webex from './images/webex.jpeg';
+import jira from './images/jira.jpeg';
 
 
 function App() {
@@ -45,10 +50,10 @@ function App() {
     <Navbar bg="light" variant="light">
     <Container>
     
-    <Navbar.Brand href="#home"><img src={menu}className='menu-button' onClick={handleShow}></img>GuideHome</Navbar.Brand>
+    <Navbar.Brand href="#home"><img src={guide}className='menu-logo'></img><img src={menu}className='menu-button' onClick={handleShow}></img>GuideHome</Navbar.Brand>
     <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menu</Offcanvas.Title>
+          
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Accordion defaultActiveKey="0">
@@ -189,6 +194,76 @@ function App() {
   </div>
     </Col>
     </Row>
+    <Row> 
+    <Col>
+    <div className='main-dashboard'>
+    <div className='dashboard-header'>
+    <h1>My Apps</h1>
+    </div>
+    <div className='dashboard-body' >
+    <Row>
+      <Col>
+        <Card style={{ width: '155px' }}>
+          <Card.Img variant="top" src={adp} style={{height:150, width:150}}/>
+          <Card.Body>
+            <Card.Title>ADP</Card.Title>
+            <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+
+        <Col>
+        <Card style={{ width: '155px',}}>
+          <Card.Img variant="top" src={outlook} style={{height:150, width:150}}/>
+          <Card.Body>
+          <Card.Title>Outlook</Card.Title> 
+          <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      </Col>
+      <Col>
+        <Card style={{ width: '155px' }}>
+          <Card.Img variant="top" src={webex} style={{height:150, width:150}}/>
+          <Card.Body>
+          <Card.Title>Webex</Card.Title> 
+          <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card style={{ width: '155px' }}>
+          <Card.Img variant="top" src={bitbucket} style={{height:150, width:150}}/>
+          <Card.Body>
+          <Card.Title>BitBucket</Card.Title> 
+          <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card style={{ width: '155px' }}>
+          <Card.Img variant="top" src={confluence} style={{height:150, width:150}}/>
+          <Card.Body>
+          <Card.Title>Confluence</Card.Title> 
+          <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card style={{ width: '155px' }}>
+          <Card.Img variant="top" src={jira} style={{height:150, width:150}}/>
+          <Card.Body>
+          <Card.Title>Jira</Card.Title> 
+          <Button variant="outline-success">Launch</Button>
+          </Card.Body>
+        </Card>
+        
+      </Col>
+    </Row>
+    
+    </div>
+    </div>
+    </Col>  
+    </Row> 
     </Container>
     </div>
   );
