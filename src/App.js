@@ -44,15 +44,25 @@ function App() {
     })
   }
 
+  const NewsAPI = require('newsapi');
+  const newsapi = new NewsAPI('ef6f687d101a459f92673b9f275978fe');
   const retriveNews = () =>{
-    axios.get(newsUrl).then((response) => {
-      setNews(response.data);
-      console.log(response.data);
-    })
+    newsapi.v2.topHeadlines({
+      sources: 'bbc-news,the-verge',
+      q: 'bitcoin',
+      category: 'business',
+      language: 'en',
+      country: 'us'
+    }).then(response => {
+      console.log(response);
+    });
+   
   }
 
+ 
   useEffect(() =>{
     retriveNews();
+    
   },[])
 
   return (
