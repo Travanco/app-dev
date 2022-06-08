@@ -1,5 +1,4 @@
 import './App.css';
-import './weather.css'
 import desMoines from './images/desmoines3.jpg';
 import menu from './images/bars-solid.png';
 import guide from './images/75guideone.png';
@@ -26,43 +25,58 @@ import news from './images/news.jpg';
 import Toast from 'react-bootstrap/Toast';
 import newsroom from './images/newsroom.jpeg';
 import newsback from './images/news background.jpeg';
-
+import Alert from 'react-bootstrap/Alert';
 
 function App() {
   const [data,setData] = useState({});
+  const [joke,setJoke] = useState({});
   const [news,setNews] = useState({});
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const url = 'https://api.openweathermap.org/data/2.5/weather?lat=41.619549&lon=-93.598022&units=imperial&appid='+process.env.REACT_APP_Weather_API_KEY;
-  const newsUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey='+process.env.REACT_APP_News_API_KEY;
-  let count = 0;
+  
+  const axios = require("axios");
+
+  const options = {
+  method: 'GET',
+  url: 'https://dad-jokes.p.rapidapi.com/random/joke',
+  headers: {
+    'X-RapidAPI-Key': process.env.REACT_APP_Dad_API_KEY2,
+    'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
+    }
+  };
+
+
+
+  const retriveJoke = () =>{
+  axios.request(options).then(function (response) {
+	console.log(response.data);
+  setJoke(response.data);
+  }   ).catch(function (error) {
+	console.error(error);
+  });
+  }
+  
   const retriveInfo = () =>{
-    axios.get(url).then((response) => {
-      setData(response.data);
+    axios.get(url).then(function (response) {
       console.log(response.data);
-    })
+      setData(response.data);
+    }   ).catch(function (error) {
+      console.error(error);
+    }
+    );
   }
 
-  const NewsAPI = require('newsapi');
-  const newsapi = new NewsAPI('ef6f687d101a459f92673b9f275978fe');
-  const retriveNews = () =>{
-    newsapi.v2.topHeadlines({
-      sources: 'bbc-news,the-verge',
-      q: 'bitcoin',
-      category: 'business',
-      language: 'en',
-      country: 'us'
-    }).then(response => {
-      console.log(response);
-    });
-   
-  }
+
+
+  
 
  
   useEffect(() =>{
-    retriveNews();
-    
+    retriveJoke();
+    retriveInfo();
   },[])
 
   return (
@@ -186,8 +200,7 @@ function App() {
           <img
             className="d-block w-100"
             src={desMoines}
-            alt="Image One"
-          />
+            alt="Image One"></img>
           <Carousel.Caption>
             <div className="weather-data">
             {data.name ? <h2>{data.name}</h2>: <h2>Des Moines</h2>}
@@ -208,7 +221,18 @@ function App() {
           ></img>
 
           <Carousel.Caption>
-            <div className="news-data"></div>
+            {joke.body ? <h2>{joke.body[0].setup}</h2>: <h2>No Joke</h2>}
+            <Alert show={show2} variant="success">
+              {joke.body ? <p>{joke.body[0].punchline}</p>: <p>No Punchline :(</p>}
+              <hr />
+              <div className="d-flex justify-content-end">
+              <Button onClick={() => setShow2(false)} variant="outline-success">
+               Close
+              </Button>
+              </div>
+              </Alert>
+
+      {!show && <Button onClick={() => setShow2(true)}>Punch me!</Button>}
           </Carousel.Caption>
         </Carousel.Item>
 
